@@ -36,9 +36,7 @@ spec:
   stages {
     stage('Build') {
       steps {
-        sh 'npm install'
-        sh 'npm run build &'
-        sleep 20
+        sh 'npm install && npm run build'
       }
     }
 
@@ -73,7 +71,7 @@ spec:
           }
         }
         sh 'git clone https://github.com/juliocvp/kubernetes-helm-docker-config.git configuracion --branch test-implementation'
-        sh 'kubectl apply -f configuracion/kubernetes-deployment/angular-14-app/manifest.yml -n default --kubeconfig=configuracion/kubernetes-config/config'
+        sh 'kubectl apply -f configuracion/kubernetes-deployments/angular-14-app/deployment.yaml -n default --kubeconfig=configuracion/kubernetes-config/config'
       }
 
     }
